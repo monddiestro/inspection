@@ -13,6 +13,9 @@ body {
   font-weight: 500;
 }
 /* buttons  */
+.btn-sm i {
+  font-size:12px;
+}
 .btn-fab:hover, .btn-fab:active, .btn-fab:focus, {
   border: solid 1px transparent;
 }

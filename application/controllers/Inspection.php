@@ -14,7 +14,9 @@ class Inspection extends CI_Controller
   function index() {
     $this->load->view('head');
     $this->load->view('nav');
-    $this->load->view('inspection');
+    $all = $this->inspection_model->pull_all_inspected();
+    $data["list"] = $all;
+    $this->load->view('inspection',$data);
     $this->load->view('script');
     $this->load->view('footer');
   }
@@ -42,7 +44,26 @@ class Inspection extends CI_Controller
       'file_path' => $path,
       'date_created' => date('Y-m-d H:i:s')
     );
-    $this->inspection_model->push_inspected($data);
-
+    $id = $this->inspection_model->push_inspected($data);
+    redirect(base_url('inspection/config?listing_id='.$id.'&listing_id='.$listing_id));
+  }
+  function config() {
+    $id = $this->input->get('id');
+    $listing_id = $this->input->get('listing_id');
+    $data = $this->inspection_model->pull_inspected($id,$listing_id);
+    $inspected = array(
+      'id' => $id,
+      'listing_id' => $listing_id,
+      'listing_uri' => $data->listing_uri,
+      'dealer_name' => $data->dealer_name,
+      'unit' => $data->unit,
+      'file_path' => $data->file_path,
+      'date_created' => $data->date_created
+    );
+    $this->load->view('head');
+    $this->load->view('nav');
+    $this->load->view('config',$inspected);
+    $this->load->view('script');
+    $this->load->view('footer');
   }
 }
