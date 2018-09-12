@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+/* btn-icon */
+.btn-icon i {
+  font-size:18px;
+  float:left;
+}
+.btn-icon span {
+  font-weight: 500;
+}
+/* buttons  */
+.btn-fab:hover, .btn-fab:active, .btn-fab:focus, {
+  border: solid 1px transparent;
+}
+.btn-fab {
+  border-radius: 60px;
+  height: 60px;
+  width: 60px;
+}
+.btn-fab i {
+  padding-top:9px;
+}
+.btn-group-sm .btn-fab{
+  position: fixed !important;
+  right: 29px;
+}
+.btn-group .btn-fab{
+  position: fixed !important;
+  right: 30px;
+  bottom:30px;
+}
