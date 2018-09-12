@@ -43,7 +43,6 @@ class Inspection extends CI_Controller
       'date_created' => date('Y-m-d H:i:s')
     );
     $this->inspection_model->push_inspected($data);
-    
 
   }
 }
