@@ -52,13 +52,13 @@ DROP TABLE IF EXISTS `inspected_tbl`;
 CREATE TABLE `inspected_tbl` (
   `inspected_id` int(10) NOT NULL AUTO_INCREMENT,
   `listing_id` varchar(100) NOT NULL,
-  `lisitng_uri` varchar(100) NOT NULL,
+  `listing_uri` varchar(100) NOT NULL,
   `dealer_name` varchar(100) DEFAULT NULL,
   `unit` varchar(100) DEFAULT NULL,
   `file_path` varchar(100) NOT NULL,
   `date_created` datetime NOT NULL,
   PRIMARY KEY (`inspected_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `inspected_tbl` (
 
 LOCK TABLES `inspected_tbl` WRITE;
 /*!40000 ALTER TABLE `inspected_tbl` DISABLE KEYS */;
+INSERT INTO `inspected_tbl` VALUES (1,'asd','asd','asd','asd','http://localhost/inspection/uploads/TPO_4711.pdf','2018-09-12 15:23:59'),(2,'test','test','test','test','http://localhost/inspection/uploads/TPO_471.pdf','2018-09-12 16:44:40');
 /*!40000 ALTER TABLE `inspected_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-12 15:12:33
+-- Dump completed on 2018-09-12 18:11:26
