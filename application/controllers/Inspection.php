@@ -90,7 +90,7 @@ class Inspection extends CI_Controller
       readfile ($file_path);
       echo "File successfully downloaded";
       exit();
-      }
+    } else { echo "file not exist"; }
   }
 
 }
