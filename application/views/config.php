@@ -39,7 +39,7 @@
       <hr>
       <div class="form-group">
         <label>Description Code</label>
-        <textarea class="form-control" name="code" rows="15" cols="80"></textarea>
+        <textarea class="form-control" name="code" rows="15" cols="80"><?php echo $code ?></textarea>
       </div>
     </div>
   </div>

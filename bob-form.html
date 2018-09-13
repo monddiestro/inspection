@@ -6,7 +6,7 @@
   </head>
   <body>
     <div class="col-lg-12">
-        <input class="form-control required" type="hidden" name="id" id="inspection_id" value="1" readonly="">
+        <input class="form-control required" type="hidden" name="id" id="inspection_id" value="" readonly="">
       <div class="form-group">
         <label for="name">Name<span class="required"></span></label>
         <input class="form-control required" type="text" name="name" id="inspection_name" placeholder="Please enter your name">
@@ -47,16 +47,8 @@
           var name = $('#inspection_name').val();
           var email = $('#inspection_email').val()
           var contact = $('#inspection_contact').val();
-          $.ajax({
-            url: "https://carmudisara.com/inspection/inspection/download",
-            type: "POST",
-            data: {
-              'id':id, 'name':name, 'email': email, 'contact': contact
-            },
-            success: function(data){
-              console.log(data);
-            }
-          });
+          getFile('http://localhost/inspection/inspection/download?id=1&name=test&contact=09176279173&email=test');
+          reset();
         }
       });
       function reset() {
@@ -66,6 +58,9 @@
         $('#inspection_contact').removeClass('is-invalid');
         $('#inspection_name').removeClass('is-invalid');
         $('#inspection_email').removeClass('is-invalid');
+      }
+      function getFile(url) {
+        window.location = url;
       }
     </script>
   </body>

@@ -58,7 +58,8 @@ class Inspection extends CI_Controller
       'dealer_name' => $data->dealer_name,
       'unit' => $data->unit,
       'file_path' => $data->file_path,
-      'date_created' => $data->date_created
+      'date_created' => $data->date_created,
+      'code' => $this->generate_code($id)
     );
     $this->load->view('head');
     $this->load->view('nav');
@@ -71,9 +72,9 @@ class Inspection extends CI_Controller
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
     $inspected_id = 1;//$this->input->post('id');
-    $name = $this->input->post('name');
-    $contact = $this->input->post('contact');
-    $email = $this->input->post('email');
+    $name = $this->input->get('name');
+    $contact = $this->input->get('contact');
+    $email = $this->input->get('email');
 
     $file_path = $this->inspection_model->pull_report($inspected_id);
     $file_path = './uploads/'.$file_path;
@@ -81,7 +82,7 @@ class Inspection extends CI_Controller
       $fileName = basename($file_path);
       $fileSize = filesize($file_path);
       // Output headers.
-      header("Cache-Control: private");
+      header("Cache-Control: public");
       header("Content-Type: application/pdf");
       header("Content-Length: ".$fileSize);
       header("Content-Disposition: attachment; filename=".$fileName);
@@ -91,5 +92,66 @@ class Inspection extends CI_Controller
       exit();
     } else { echo "file not exist"; }
   }
-
+  function generate_code($inspected_id) {
+    $code = "";
+    $code .= '<div class="col-lg-12">';
+    $code .= '<input class="form-control required" type="hidden" name="id" id="inspection_id" value="'.$inspected_id.'" readonly="">';
+    $code .= '<div class="form-group">';
+    $code .= '<label for="name">Name<span class="required"></span></label>';
+    $code .= '<input class="form-control required" type="text" name="name" id="inspection_name" placeholder="Please enter your name">';
+    $code .= '</div>';
+    $code .= '<div class="form-group">';
+    $code .= '<label for="contact">Mobile Number<span class="required"></span></label>';
+    $code .= '<input class="form-control required" type="text" name="contact" id="inspection_contact" placeholder="Example: 09271234567">';
+    $code .= '</div>';
+    $code .= '<div class="form-group">';
+    $code .= '<label for="email">Email<span class="required"></span></label>';
+    $code .= '<input class="form-control required" type="email" name="email" id="inspection_email" placeholder="Example: john.smith@example.com">';
+    $code .= '</div>';
+    $code .= '<div class="form-group">';
+    $code .= '<button type="submit" id="btn_download" class="btn btn-warning">Download Free Report</button>';
+    $code .= '</div>';
+    $code .= '</div>';
+    $code .= '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>';
+    $code .= '<script type="text/javascript">';
+    $code .= 'var required = true;';
+    $code .= "$('#btn_download').on('click',function() {";
+    $code .= "if($('#inspection_id').val() == '') {";
+    $code .= 'required = false;';
+    $code .= '}';
+    $code .= "if($('#inspection_name').val() == '') {";
+    $code .= 'required = false;';
+    $code .= "$('#inspection_name').addClass('is-invalid');";
+    $code .= '}';
+    $code .= "if($('#inspection_contact').val() == '') {";
+    $code .= 'required = false;';
+    $code .= "$('#inspection_contact').addClass('is-invalid');";
+    $code .= '}';
+    $code .= "if($('#inspection_email').val() == '') {";
+    $code .= 'required = false;';
+    $code .= "$('#inspection_email').addClass('is-invalid');";
+    $code .= '}';
+    $code .= 'if(required) {';
+    $code .= "var id = $('#inspection_id').val();";
+    $code .= "var name = $('#inspection_name').val();";
+    $code .= "var email = $('#inspection_email').val()";
+    $code .= "var contact = $('#inspection_contact').val();";
+    $code .= "getFile('http://localhost/inspection/inspection/download?id=1&name=test&contact=09176279173&email=test');";
+    $code .= 'reset();';
+    $code .= '}';
+    $code .= '});';
+    $code .= 'function reset() {';
+    $code .= "$('#inspection_names').val('');";
+    $code .= "$('#inspection_contact').val('');";
+    $code .= "$('#inspection_email').val('');";
+    $code .= "$('#inspection_contact').removeClass('is-invalid');";
+    $code .= "$('#inspection_name').removeClass('is-invalid');";
+    $code .= "$('#inspection_email').removeClass('is-invalid');";
+    $code .= '}';
+    $code .= 'function getFile(url) {';
+    $code .= 'window.location = url;';
+    $code .= '}';
+    $code .= '</script>';
+    return $code;
+  }
 }
