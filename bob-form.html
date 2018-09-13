@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="col-lg-12">
+        <input class="form-control required" type="hidden" name="id" id="inspection_id" value="" readonly="">
+      <div class="form-group">
+        <label for="name">Name<span class="required"></span></label>
+        <input class="form-control required" type="text" name="name" id="inspection_name" placeholder="Please enter your name">
+      </div>
+      <div class="form-group">
+        <label for="contact">Mobile Number<span class="required"></span></label>
+        <input class="form-control required" type="text" name="contact" id="inspection_contact" placeholder="Example: 09271234567">
+      </div>
+      <div class="form-group">
+        <label for="email">Email<span class="required"></span></label>
+        <input class="form-control required is-invalid" type="email" name="email" id="inspection_email" placeholder="Example: john.smith@example.com">
+      </div>
+      <div class="form-group">
+        <button type="submit" id="btn_download" class="btn btn-warning">Download Free Report</button>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      var required = true;
+      $('#btn_download').on('click',function() {
+        if($('#inspection_id').val() == '') {
+          required = false;
+        }
+        if($('#inspection_name').val() == '') {
+          required = false;
+          $('#inspection_name').addClass('is-invalid');
+        }
+        if($('#inspection_contact').val() == '') {
+          required = false;
+          $('#inspection_contact').addClass('is-invalid');
+        }
+        if($('#inspection_email').val() == '') {
+          required = false;
+          $('#inspection_email').addClass('is-invalid');
+        }
+        if(required) {
+          var id = $('#inspection_id').val();
+          var name = $('#inspection_name').val();
+          var email = $('#inspection_email').val()
+          var contact = $('#inspection_contact').val();
+          $.ajax({
+            url: "https://carmudisara.com/inspection/inspection/download",
+            type: "POST",
+            data: {
+              'id':id, 'name':name, 'email': email, 'contact': contact
+            },
+            success: function(data){
+
+            }
+          });
+        }
+      });
+      function reset() {
+        $('#inspection_names').val('');
+        $('#inspection_contact').val('');
+        $('#inspection_email').val('');
+        $('#inspection_contact').removeClass('is-invalid');
+        $('#inspection_name').removeClass('is-invalid');
+        $('#inspection_email').removeClass('is-invalid');
+      }
+    </script>
+  </body>
+</html>

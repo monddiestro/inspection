@@ -66,4 +66,21 @@ class Inspection extends CI_Controller
     $this->load->view('script');
     $this->load->view('footer');
   }
+  function download() {
+
+    header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+
+    $inspected_id = $this->input->post('id');
+    $name = $this->input->post('name');
+    $contact = $this->input->post('contact');
+    $email = $this->input->post('email');
+
+    $file_path = $this->inspection_model->pull_report($inspected_id);
+
+    $this->load->helper('download');
+    force_download($file_path, NULL);
+
+  }
+
 }
