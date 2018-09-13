@@ -67,9 +67,9 @@ class Inspection extends CI_Controller
     $this->load->view('footer');
   }
   function download() {
+
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-
     $inspected_id = $this->input->post('id');
     $name = $this->input->post('name');
     $contact = $this->input->post('contact');
@@ -77,7 +77,6 @@ class Inspection extends CI_Controller
 
     $file_path = $this->inspection_model->pull_report($inspected_id);
     $file_path = './uploads/'.$file_path;
-    echo $file_path;
     if(file_exists($file_path)) {
       $fileName = basename($file_path);
       $fileSize = filesize($file_path);
