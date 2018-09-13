@@ -45,7 +45,7 @@ class Inspection extends CI_Controller
       'date_created' => date('Y-m-d H:i:s')
     );
     $id = $this->inspection_model->push_inspected($data);
-    redirect(base_url('inspection/config?listing_id='.$id.'&listing_id='.$listing_id));
+    redirect(base_url('inspection/config?id='.$id.'&listing_id='.$listing_id));
   }
   function config() {
     $id = $this->input->get('id');
@@ -79,7 +79,7 @@ class Inspection extends CI_Controller
     $file_path = $this->inspection_model->pull_report($inspected_id);
 
     $this->load->helper('download');
-    force_download($file_path, NULL);
+    force_download($file, NULL);
 
   }
 
