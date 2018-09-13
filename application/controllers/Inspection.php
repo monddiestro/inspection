@@ -33,7 +33,7 @@ class Inspection extends CI_Controller
     $this->load->library('upload', $config);
     if($this->upload->do_upload('inspection_report')) {
       // if success set the file directory
-      $path = base_url('uploads/') . $this->upload->data('raw_name').$this->upload->data('file_ext');
+      $path = './uploads/' . $this->upload->data('raw_name').$this->upload->data('file_ext');
     }
     $path;
     $data = array(
@@ -79,6 +79,7 @@ class Inspection extends CI_Controller
     $file_path = $this->inspection_model->pull_report($inspected_id);
 
     $this->load->helper('download');
+    echo $file_path;
     force_download($file_path, NULL);
 
   }
