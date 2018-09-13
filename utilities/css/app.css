@@ -36,3 +36,43 @@ body {
   right: 30px;
   bottom:30px;
 }
+/* navigation  */
+.navbar {
+  min-height: 70px;
+}
+.navbar-brand > img {
+  width: 150px;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #555;
+    font-weight:500;
+    background-color: transparent;
+}
+.navbar-nav a > i {
+  position:absolute;
+}
+.navbar-nav>li>a {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.navbar-nav>li>a {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+@media (min-width: 768px) {
+  .navbar-nav>li>a {
+      padding-top: 25px;
+      padding-bottom: 25px;
+  }
+}
+.navbar-default .navbar-collapse {
+  height: 180px;
+}
+.navbar-toggle {
+  margin-top:20px;
+}
+@media (max-width:768px) {
+  .navbar-default .navbar-collapse {
+    margin-top:10px;
+  }
+}

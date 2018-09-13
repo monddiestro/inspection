@@ -29,4 +29,18 @@ class Inspection_model extends CI_Model
     $row = $query->row();
     return $row->file_path;
   }
+  function push_access($data) {
+    $this->db->insert('access_tbl',$data);
+  }
+  function pull_access() {
+    $this->db->order_by('date_access','DESC');
+    $this->db->join('inspected_tbl','access_tbl.inspected_id = inspected_tbl.inspected_id','left');
+    $query = $this->db->get('access_tbl');
+    return $query->result();
+  }
+  function pull_request() {
+    $this->db->order_by('date_request','DESC');
+    $query = $this->db->get('request_tbl');
+    return $query->result();
+  }
 }

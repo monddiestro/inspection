@@ -5,24 +5,24 @@
         <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
-              <th>Listing ID</th>
-              <th>URL</th>
-              <th>Dealer Name</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Email</th>
               <th>Unit</th>
-              <th>Date Created</th>
+              <th>Year</th>
+              <th>Listing ID</th>
+              <th>Date Request</th>
             </thead>
             <tbody>
               <?php foreach ($list as $d): ?>
                 <tr>
-                  <td>
-                    <a href="<?php echo base_url('inspection/config?id='.$d->inspected_id."&listing_id=".$d->listing_id) ?>">
-                      <?php echo $d->listing_id ?>
-                    </a>
-                  </td>
-                  <td><?php echo $d->listing_uri ?></td>
-                  <td><?php echo $d->dealer_name ?></td>
+                  <td><?php echo $d->name; ?></td>
+                  <td><?php echo $d->contact ?></td>
+                  <td><?php echo $d->email ?></td>
                   <td><?php echo $d->unit ?></td>
-                  <td><?php echo $d->date_created ?></td>
+                  <td><?php echo $d->year ?></td>
+                  <td><?php echo $d->listing_id ?></td>
+                  <td><?php echo $d->date_request ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

@@ -13,7 +13,8 @@ class Inspection extends CI_Controller
 
   function index() {
     $this->load->view('head');
-    $this->load->view('nav');
+    $menu = array( 'menu' => 'inspected' );
+    $this->load->view('nav',$menu);
     $all = $this->inspection_model->pull_all_inspected();
     $data["list"] = $all;
     $this->load->view('inspection',$data);
@@ -71,10 +72,19 @@ class Inspection extends CI_Controller
 
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-    $inspected_id = 1;//$this->input->post('id');
+    $inspected_id = $this->input->get('id');
     $name = $this->input->get('name');
     $contact = $this->input->get('contact');
     $email = $this->input->get('email');
+
+    $access_data = array(
+      'name' => $name,
+      'contact' => $contact,
+      'email' => $email,
+      'inspected_id' => $inspected_id,
+      'date_access' => date('Y-m-d H:i:s')
+    );
+    $this->inspection_model->push_access($data);
 
     $file_path = $this->inspection_model->pull_report($inspected_id);
     $file_path = './uploads/'.$file_path;
@@ -154,4 +164,25 @@ class Inspection extends CI_Controller
     $code .= '</script>';
     return $code;
   }
+  function access() {
+    $this->load->view('head');
+    $menu = array( 'menu' => 'access' );
+    $this->load->view('nav',$menu);
+    $all = $this->inspection_model->pull_access();
+    $data["list"] = $all;
+    $this->load->view('access',$data);
+    $this->load->view('script');
+    $this->load->view('footer');
+  }
+  function request() {
+    $this->load->view('head');
+    $menu = array( 'menu' => 'request' );
+    $this->load->view('nav',$menu);
+    $all = $this->inspection_model->pull_request();
+    $data["list"] = $all;
+    $this->load->view('request',$data);
+    $this->load->view('script');
+    $this->load->view('footer');
+  }
+
 }
