@@ -6,7 +6,7 @@ class Inspection_model extends CI_Model
 {
   function push_inspected($data) {
     $this->db->insert('inspected_tbl',$data);
-    $this->select_max('inspected_id', 'inspected_id');
+    $this->db->select_max('inspected_id', 'inspected_id');
     $query = $this->db->get('inspected_tbl');
     $row = $query->row();
     return $row->inspected_id;
