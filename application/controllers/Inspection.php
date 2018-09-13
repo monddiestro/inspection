@@ -70,7 +70,7 @@ class Inspection extends CI_Controller
 
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-    $inspected_id = $this->input->post('id');
+    $inspected_id = 1;//$this->input->post('id');
     $name = $this->input->post('name');
     $contact = $this->input->post('contact');
     $email = $this->input->post('email');
@@ -82,7 +82,7 @@ class Inspection extends CI_Controller
       $fileSize = filesize($file_path);
       // Output headers.
       header("Cache-Control: private");
-      header("Content-Type: application/stream");
+      header("Content-Type: application/pdf");
       header("Content-Length: ".$fileSize);
       header("Content-Disposition: attachment; filename=".$fileName);
       // Output file.
