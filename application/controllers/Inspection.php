@@ -76,7 +76,21 @@ class Inspection extends CI_Controller
     $email = $this->input->post('email');
 
     $file_path = $this->inspection_model->pull_report($inspected_id);
-    echo base_url('uploads/'.$file_path);
+    $file_path = './uploads/'.$file_path;
+    echo $file_path;
+    if(file_exists($file_path)) {
+      $fileName = basename($file_path);
+      $fileSize = filesize($file_path);
+      // Output headers.
+      header("Cache-Control: private");
+      header("Content-Type: application/stream");
+      header("Content-Length: ".$fileSize);
+      header("Content-Disposition: attachment; filename=".$fileName);
+      // Output file.
+      readfile ($file_path);
+      echo "File successfully downloaded";
+      exit();
+      }
   }
 
 }
