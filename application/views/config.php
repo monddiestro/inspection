@@ -31,7 +31,7 @@
       </div>
       <div class="form-group">
         <label>PDF Link</label>
-        <input type="text" name="" class="form-control" value="<?php echo $file_path ?>">
+        <input type="text" name="" class="form-control" value="<?php echo base_url('uploads/'.$file_path) ?>">
       </div>
     </div>
     <div class="col-sm-12 col-md-6">
