@@ -79,7 +79,7 @@ class Inspection extends CI_Controller
     $file_path = $this->inspection_model->pull_report($inspected_id);
 
     $this->load->helper('download');
-    force_download($file, NULL);
+    force_download($file_path, NULL);
 
   }
 
