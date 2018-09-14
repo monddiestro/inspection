@@ -63,7 +63,8 @@ class Inspection extends CI_Controller
       'code' => $this->generate_code($id)
     );
     $this->load->view('head');
-    $this->load->view('nav');
+    $menu = array( 'menu' => 'inspected' );
+    $this->load->view('nav',$menu);
     $this->load->view('config',$inspected);
     $this->load->view('script');
     $this->load->view('footer');
