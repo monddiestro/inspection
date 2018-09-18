@@ -208,7 +208,7 @@ class Inspection extends CI_Controller
       'unit' => $unit,
       'year' => $year,
       'listing_id' => $listing_id,
-      'date_request' => $date_request
+      'date_request' => date('Y-m-d H:i:s')
     );
 
     $this->inspection_model->push_request($data);
