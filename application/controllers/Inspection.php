@@ -191,5 +191,27 @@ class Inspection extends CI_Controller
     $this->load->view('script');
     $this->load->view('footer');
   }
+  function push_request() {
+    header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+    $name = $this->input->post('name');
+    $contact = $this->input->post('contact');
+    $email = $this->input->post('email');
+    $unit = $this->input->post('unit');
+    $year = $this->input->post('year');
+    $listing_id = $this->input->post('listing_id');
 
+    $data = array(
+      'name' => $name,
+      'contact' => $contact,
+      'email' => $email,
+      'unit' => $unit,
+      'year' => $year,
+      'listing_id' => $listing_id,
+      'date_request' => $date_request
+    );
+
+    $this->inspection_model->push_request($data);
+
+  }
 }

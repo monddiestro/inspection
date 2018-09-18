@@ -240,8 +240,7 @@
 						</div>
 					</div>
 	                <div class="row">
-	                	<div class="col-lg-12">
-	                		<form id="requestForm" action="http://35.162.169.107/certification/request.php" method="post">
+	                	<div class="col-lg-12" id="requestForm">
 	                			<div class="form-group" id="success_notif">
 	                				<div class="alert alert-success">
 	                					<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
@@ -249,32 +248,28 @@
 	                				</div>
 	                			</div>
 	                			<div class="form-group">
-		                			<input class="form-control required" type="text" name="make" placeholder="Vehicle Make"/>
+		                			<input class="form-control required" type="text" id="unit" name="unit" placeholder="Unit"/>
 		                		</div>
 	                			<div class="form-group">
-		                			<input class="form-control required" type="text" name="model" placeholder="Vehicle Model"/>
-		                		</div>
-	                			<div class="form-group">
-		                			<input class="form-control required" type="number" name="year" placeholder="Vehicle Year"/>
+		                			<input class="form-control required" type="number" id="year" name="year" placeholder="Vehicle Year"/>
 		                		</div>
 		                		<div class="form-group">
-		                			<input class="form-control" type="text" name="listing_id" placeholder="Listing ID"/>
+		                			<input class="form-control" type="text" name="listing_id" id="rqst_listing_id" placeholder="Listing ID"/>
 		                		</div>
 		                		<div class="form-group">
-		                			<input class="form-control required" type="text" name="name" placeholder="Name"/>
+		                			<input class="form-control required" type="text" name="name" id="rqst_name" placeholder="Name"/>
 		                		</div>
 		                		<div class="form-group">
-		                			<input class="form-control required" type="number" name="mobile" placeholder="Mobile Number"/>
+		                			<input class="form-control required" type="number" name="mobile" id="rqst_mobile" placeholder="Mobile Number"/>
 		                		</div>
 		                		<div class="form-group">
-		                			<input class="form-control required" type="email" name="email" placeholder="Email Address"/>
+		                			<input class="form-control required" type="email" name="email" id="rqst_email" placeholder="Email Address"/>
 		                		</div>
 		                		<div class="form-group" >
-		                			<button type="submit" id="requestSubmit" class="btn btn-warning">
+		                			<button type="button" id="requestSubmit" class="btn btn-warning">
 		                				<span>Submit</span>
 		                			</button>
 		                		</div>
-	                		</form>
 	                	</div>
 	                </div>
 				</div>
@@ -318,12 +313,19 @@
 			}
   });
   function reset() {
-    $('#inspection_names').val('');
-    $('#inspection_contact').val('');
-    $('#inspection_email').val('');
-    $('#inspection_contact').removeClass('is-invalid');
-    $('#inspection_name').removeClass('is-invalid');
-    $('#inspection_email').removeClass('is-invalid');
+    $('#listing_id').val('');
+    $('#name').val('');
+    $('#contact').val('');
+    $('#email').val('');
+    $('#contact').removeClass('is-invalid');
+    $('#name').removeClass('is-invalid');
+    $('#email').removeClass('is-invalid');
+    $('#unit').empty();
+    $('#year').empty();
+    $('#rqst_listing_id').empty();
+    $('#rqst_name').empty();
+    $('#rqst_mobile').empty();
+    $('#rqst_email').empty();
   }
   function getFile(url) {window.location = url;}
 	$('#requestSubmit').click(function(e) {
@@ -345,19 +347,22 @@
 			if(isValid == false) {
 				e.preventDefault();
 			} else {
-				$('#requestForm').submit(function(e) {
-
-					//show div and clear data
-					$('success_notif').show();
-					$('make').empty();
-					$('model').empty();
-					$('year').empty();
-					$('listing_id').empty();
-					$('name').empty();
-					$('mobile').empty();
-					$('email').empty();
-
-				});
+        $.ajax({
+          url: "https://carmudisara.com/inspection/inspection/push_request",
+          type: "POST",
+          data: {
+            name: $('#rqst_name').val(),
+            contact: $('#rqst_mobile').val(),
+            email: $('#rqst_email').val(),
+            unit: $('#unit').val(),
+            year: $('#years').val(),
+            listing_id: $('#rqst_listing_id').val()
+          },
+          success: function(data) {
+            $('success_notif').show();
+            reset();
+          }
+        });
 			}
 
 		});

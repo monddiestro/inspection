@@ -49,4 +49,7 @@ class Inspection_model extends CI_Model
     $row = $query->row();
     return $row->inspected_id;
   }
+  function push_request($data) {
+    $this->db->insert('request_tbl',$data);
+  }
 }
