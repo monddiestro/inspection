@@ -85,7 +85,7 @@ class Inspection extends CI_Controller
       'inspected_id' => $inspected_id,
       'date_access' => date('Y-m-d H:i:s')
     );
-    $this->inspection_model->push_access($data);
+    $this->inspection_model->push_access($access_data);
 
     $file_path = $this->inspection_model->pull_report($inspected_id);
     $file_path = './uploads/'.$file_path;
@@ -145,9 +145,9 @@ class Inspection extends CI_Controller
     $code .= 'if(required) {';
     $code .= "var id = $('#inspection_id').val();";
     $code .= "var name = $('#inspection_name').val();";
-    $code .= "var email = $('#inspection_email').val()";
+    $code .= "var email = $('#inspection_email').val();";
     $code .= "var contact = $('#inspection_contact').val();";
-    $code .= "getFile('http://localhost/inspection/inspection/download?id=1&name=test&contact=09176279173&email=test');";
+    $code .= "getFile('".base_url("inspection/download?id='+id+'&name='+name+'&contact='+contact+'&email='+email").");";
     $code .= 'reset();';
     $code .= '}';
     $code .= '});';
