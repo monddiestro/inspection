@@ -43,4 +43,10 @@ class Inspection_model extends CI_Model
     $query = $this->db->get('request_tbl');
     return $query->result();
   }
+  function pull_inspected_id($listing_id) {
+    $this->db->where('listing_id', $listing_id);
+    $query = $this->db->get('inspected_tbl');
+    $row = $query->row();
+    return $row->inspected_id;
+  }
 }

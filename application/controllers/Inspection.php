@@ -73,10 +73,16 @@ class Inspection extends CI_Controller
 
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+    $listing_id = $inspected_id = "";
+    $listing_id = $this->input->get('listing_id');
     $inspected_id = $this->input->get('id');
     $name = $this->input->get('name');
     $contact = $this->input->get('contact');
     $email = $this->input->get('email');
+
+    if(empty($inspected_id)) {
+      $inspected_id = $this->inspection_model->pull_inspected_id($listing_id);
+    }
 
     $access_data = array(
       'name' => $name,
