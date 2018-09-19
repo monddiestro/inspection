@@ -73,10 +73,16 @@ class Inspection extends CI_Controller
 
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+    $listing_id = $inspected_id = "";
+    $listing_id = $this->input->get('listing_id');
     $inspected_id = $this->input->get('id');
     $name = $this->input->get('name');
     $contact = $this->input->get('contact');
     $email = $this->input->get('email');
+
+    if(empty($inspected_id)) {
+      $inspected_id = $this->inspection_model->pull_inspected_id($listing_id);
+    }
 
     $access_data = array(
       'name' => $name,
@@ -85,7 +91,7 @@ class Inspection extends CI_Controller
       'inspected_id' => $inspected_id,
       'date_access' => date('Y-m-d H:i:s')
     );
-    $this->inspection_model->push_access($data);
+    $this->inspection_model->push_access($access_data);
 
     $file_path = $this->inspection_model->pull_report($inspected_id);
     $file_path = './uploads/'.$file_path;
@@ -145,9 +151,9 @@ class Inspection extends CI_Controller
     $code .= 'if(required) {';
     $code .= "var id = $('#inspection_id').val();";
     $code .= "var name = $('#inspection_name').val();";
-    $code .= "var email = $('#inspection_email').val()";
+    $code .= "var email = $('#inspection_email').val();";
     $code .= "var contact = $('#inspection_contact').val();";
-    $code .= "getFile('http://localhost/inspection/inspection/download?id=1&name=test&contact=09176279173&email=test');";
+    $code .= "getFile('".base_url("inspection/download?id='+id+'&name='+name+'&contact='+contact+'&email='+email").");";
     $code .= 'reset();';
     $code .= '}';
     $code .= '});';
@@ -185,5 +191,36 @@ class Inspection extends CI_Controller
     $this->load->view('script');
     $this->load->view('footer');
   }
+  function push_request() {
+    header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+    $name = $this->input->post('name');
+    $contact = $this->input->post('contact');
+    $email = $this->input->post('email');
+    $unit = $this->input->post('unit');
+    $year = $this->input->post('year');
+    $listing_id = $this->input->post('listing_id');
 
+    $data = array(
+      'name' => $name,
+      'contact' => $contact,
+      'email' => $email,
+      'unit' => $unit,
+      'year' => $year,
+      'listing_id' => $listing_id,
+      'date_request' => date('Y-m-d H:i:s')
+    );
+
+    $this->inspection_model->push_request($data);
+
+    if(!empty($email)) {
+      $this->load->library('aws');
+      $subject = "Inspection Request";
+      $sender = 'Web Admin<reymond.diestro@carmudi.com.ph>';
+      $recipient = 'dee.rheberg@carmudi.com.ph';
+      $htmlbody = 'Hi Dee!<br/>'.$name.' is resquesting for inspection service. Please see contact details below<br/>Email:'.$email.'<br/>Contact Number:'.$contact;
+      $this->aws->sendMailUsingSES($subject,$htmlbody,$recipient,$sender);
+    }
+
+  }
 }
