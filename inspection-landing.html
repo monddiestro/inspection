@@ -320,12 +320,12 @@
     $('#contact').removeClass('is-invalid');
     $('#name').removeClass('is-invalid');
     $('#email').removeClass('is-invalid');
-    $('#unit').empty();
-    $('#year').empty();
-    $('#rqst_listing_id').empty();
-    $('#rqst_name').empty();
-    $('#rqst_mobile').empty();
-    $('#rqst_email').empty();
+    $('#unit').val('');
+    $('#year').val('');
+    $('#rqst_listing_id').val('');
+    $('#rqst_name').val('');
+    $('#rqst_mobile').val('');
+    $('#rqst_email').val('');
   }
   function getFile(url) {window.location = url;}
 	$('#requestSubmit').click(function(e) {

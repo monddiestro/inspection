@@ -213,5 +213,14 @@ class Inspection extends CI_Controller
 
     $this->inspection_model->push_request($data);
 
+    if(!empty($email)) {
+      $this->load->library('aws');
+      $subject = "Inspection Request";
+      $sender = 'Web Admin<reymond.diestro@carmudi.com.ph>';
+      $recipient = 'dee.rheberg@carmudi.com.ph';
+      $htmlbody = 'Hi Dee!<br/>'.$name.' is resquesting for inspection service. Please see contact details below<br/>Email:'.$email.'<br/>Contact Number:'.$contact;
+      $this->aws->sendMailUsingSES($subject,$htmlbody,$recipient,$sender);
+    }
+
   }
 }
