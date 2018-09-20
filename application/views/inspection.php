@@ -78,7 +78,6 @@
     </div>
   </div>
 </div>
-
 <?php foreach ($list as $d): ?>
   <?php echo form_open_multipart('inspection/modify'); ?>
   <div class="modal fade" id="mod_<?php echo $d->inspected_id ?>" role="dialog">
@@ -87,7 +86,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Edit Inspected Details</h4>
+          <h4 class="modal-title">Edit Inspected Vehicle</h4>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -106,12 +105,11 @@
                 <input type="text" class="form-control" placeholder="Unit" name="unit" value="<?php echo $d->unit ?>">
               </div>
             </div>
+          </div>
         </div>
         <div class="modal-footer">
-          <center>
             <input type="submit" name="submit" value="Save" class="btn btn-primary"/>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          </center>
         </div>
       </div>
     </div>
