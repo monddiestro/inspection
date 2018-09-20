@@ -223,4 +223,23 @@ class Inspection extends CI_Controller
     }
 
   }
+  function modify() {
+    $referer = $this->input->server('HTTP_REFERRER');
+    $id = $this->input->post('id');
+    $listing_id = $this->input->post('listing_id');
+    $listing_uri = $this->input->post('listing_uri');
+    $dealer_name = $this->input->post('dealer_name');
+    $unit = $this->input->post('unit');
+
+    $data = array(
+      'listing_id' => $listing_id,
+      'listing_uri' => $listing_uri,
+      'dealer_name' => $dealer_name,
+      'unit' => $unit
+    );
+    $this->inspection_model->push_update($data,$id);
+    $this->session->set_flashdata('result','success');
+    $this->session->set_flashdata('result_message', 'Success! Inspected details updated');
+    redirect($referer);
+  }
 }

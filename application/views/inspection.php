@@ -1,5 +1,21 @@
 <div class="container">
+  <?php
+    $flash = $this->session->flashdata('result');
+    if(!empty($flash)) {
+      $display = 'block';
+      $class = $this->session->flashdata('result');
+      $message = $this->session->flashdata('result_message');
+    } else {
+      $display = 'none';
+      $class = '';
+      $message = '';
+    }
+  ?>
+  <!-- table section -->
   <div class="page-mtop">
+    <div class="alert alert-<?php echo $class ?>" style="display:<?php echo $display ?>">
+        <?php echo $message; ?>
+    </div>
     <div class="card">
       <div class="table-header">
         <div class="row">
@@ -17,6 +33,7 @@
                   <th>Dealer Name</th>
                   <th>Unit</th>
                   <th>Date Created</th>
+                  <th></th>
                 </thead>
                 <tbody>
                   <?php foreach ($list as $d): ?>
@@ -30,6 +47,10 @@
                       <td><?php echo $d->dealer_name ?></td>
                       <td><?php echo $d->unit ?></td>
                       <td><?php echo $d->date_created ?></td>
+                      <td>
+                        <a href="#" id="main" data-toggle="modal" data-target="#mod_<?php echo $d->inspected_id ?>"><i class="material-icons">edit</i></a>
+                        <a href="#"><i class="material-icons">delete</i></a>
+                      </td>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>
@@ -41,3 +62,43 @@
     </div>
   </div>
 </div>
+
+<?php foreach ($list as $d): ?>
+  <?php echo form_open_multipart('inspection/modify'); ?>
+  <div class="modal fade" id="mod_<?php echo $d->inspected_id ?>" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Inspected Details</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <input type="hidden" name="id" value="<?php echo $d->inspected_id ?>">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Listing ID" name="listing_id" value="<?php echo $d->listing_id ?>">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Listing Link" name="listing_uri" value="<?php echo $d->listing_uri ?>">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Dealer Name" name="dealer_name" value="<?php echo $d->dealer_name ?>">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Unit" name="unit" value="<?php echo $d->unit ?>">
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <center>
+            <input type="submit" name="submit" value="Save" class="btn btn-primary"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php echo form_close(); ?>
+<?php endforeach; ?>

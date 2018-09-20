@@ -52,4 +52,9 @@ class Inspection_model extends CI_Model
   function push_request($data) {
     $this->db->insert('request_tbl',$data);
   }
+  function push_update($data,$id) {
+    $this->db->where('inspected_id',$id);
+    $this->db->set($data);
+    $this->db->update('inspected_tbl');
+  }
 }
