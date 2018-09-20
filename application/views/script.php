@@ -37,19 +37,19 @@
             </div>
           </div>
           <div class="col-sm-12 col-md-12">
-            <div class="form-group">
-              <label class="btn btn-default btn-icon">
-                <input type="file" name="inspection_report" id="inspection_report" accept="application/pdf" style="display:none;">
-                <i class="material-icons">attach_file</i>&nbsp;&nbsp;&nbsp;<span>Report</span>
-              </label>
-              <span class="text-muted" id="filename">No File Selected</span>
-            </div>
+            <label class="btn btn-default btn-icon">
+              <input type="file" name="inspection_report" id="inspection_report" accept="application/pdf" style="display:none;">
+              <i class="material-icons">attach_file</i>&nbsp;&nbsp;&nbsp;<span>Report</span>
+            </label>
+            <span class="text-muted" id="filename">No File Selected</span>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <input type="submit" name="submit" value="Upload" class="btn btn-primary"/>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <center>
+          <input type="submit" name="submit" value="Upload" class="btn btn-primary"/>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </center>  
       </div>
     </div>
   </div>

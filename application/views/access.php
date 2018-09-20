@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="">
+  <div class="page-mtop">
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-12">
-        <div class="table-responsive">
-          <table class="table table-bordered">
+        <div class="table-responsive text-nowrap">
+          <table class="table">
             <thead>
               <th>Name</th>
               <th>Contact</th>

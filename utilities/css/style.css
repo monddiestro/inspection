@@ -1,0 +1,85 @@
+/* navbar */
+  .navbar-default {
+    background: #fff;
+  }
+  .navbar-right {
+    margin-right: 0px;
+  }
+ .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover , {
+    background-color: transparent !important;
+    border-color: none ;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    transition: all 0.2s;
+    background-color: #007bff;
+  }
+  .navbar-toggle .top-bar {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%;
+  }
+  .navbar-toggle .middle-bar {
+    opacity: 0;
+  }
+  .navbar-toggle .bottom-bar {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+  }
+  .navbar-toggle.collapsed .top-bar {
+    transform: rotate(0);
+  }
+  .navbar-toggle.collapsed .middle-bar {
+    opacity: 1;
+  }
+  .navbar-toggle.collapsed .bottom-bar {
+    transform: rotate(0);
+  }
+  /* ui elements */
+  .page-mtop {
+    margin-top: 100px;
+  }
+  .btn {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  }
+  .card {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    border: 0;
+    font-weight: 400;
+    padding: 10px;
+  }
+  /* modals */
+  .modal-title {
+    text-align: center;
+  }
+  .modal-header ,.modal-footer {
+    border: none;
+  }
+  .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 0px 15px;
+  }
+  /* table */
+  .table > thead > tr > th {
+    color: #333 ;
+  }
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+  .flip-scroll .cf:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+	.flip-scroll * html .cf { zoom: 1; }
+	.flip-scroll *:first-child+html .cf { zoom: 1; }
+	.flip-scroll table { width: 100%; border-collapse: collapse; border-spacing: 0; }
+	.flip-scroll th,
+	.flip-scroll td { margin: 0; vertical-align: top; }
+	.flip-scroll th { text-align: left; }
+	.flip-scroll table { display: block; position: relative; width: 100%; }
+	.flip-scroll thead { display: block; float: left;}
+	.flip-scroll tbody { display: block; width: auto; position: relative; overflow-x: auto; white-space: nowrap; }
+	.flip-scroll thead tr { display: block; }
+	.flip-scroll th { display: block; text-align: right; }
+	.flip-scroll tbody tr { display: inline-block; vertical-align: top; }
+	.flip-scroll td { display: block;  text-align: left; }
+}
