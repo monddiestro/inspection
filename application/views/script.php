@@ -46,10 +46,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <center>
           <input type="submit" name="submit" value="Upload" class="btn btn-primary"/>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </center>  
       </div>
     </div>
   </div>
@@ -66,4 +64,25 @@
     input.trigger('fileselect',[numFiles,label]);
     $('#filename').text(label);
   });
+
+  $('#search_id').keyup(function(){
+    var input,filter,table,tr,td,i;
+    input = document.getElementById("search_id");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("listing_tbl");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++ ) {
+      td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+    }
+  });
+
+
+
 </script>
