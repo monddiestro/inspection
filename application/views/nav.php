@@ -17,7 +17,7 @@
         <li class="<?php echo ($menu == 'inspected') ? 'active' : '' ?>"><a href="<?php echo base_url() ?>">Inspected</a></li>
         <li class="<?php echo ($menu == 'request') ? 'active' : '' ?>"><a href="<?php echo base_url('inspection/request') ?>">Request</a></li>
         <li class="<?php echo ($menu == 'access') ? 'active' : '' ?>"><a href="<?php echo base_url('inspection/access') ?>">Access</a></li>
-        <li> <a href="#"><i class="material-icons">exit_to_app</i></a></li>
+        <li> <a href="#">User Name | Log out</a></li>
       </ul>
     </div>
   </div>

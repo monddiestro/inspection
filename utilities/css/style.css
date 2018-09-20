@@ -49,6 +49,16 @@
     font-weight: 400;
     padding: 10px;
   }
+  .table-filter {
+    margin: 20px 0;
+  }
+  /* breadcrumb */
+  .breadcrumb {
+    background-color: transparent;
+  }
+  .breadcrumb>li:last-child {
+    color: #777;
+  }
   /* modals */
   .modal-title {
     text-align: center;
@@ -63,7 +73,7 @@
   }
   /* table */
   .table > thead > tr > th {
-    color: #333 ;
+    color: #777 ;
   }
 
 @media only screen and (max-width: 760px),
