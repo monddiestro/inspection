@@ -16,12 +16,12 @@
         <div class="row">
           <div class="col-sm-12 col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Listing ID" name="listing_id" value="" required>
+              <input type="text" class="form-control" placeholder="Listing ID" name="listing_id" value="">
             </div>
           </div>
           <div class="col-sm-12 col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Listing Link" name="listing_uri" value="" required>
+              <input type="text" class="form-control" placeholder="Listing Link" name="listing_uri" value="">
             </div>
           </div>
         </div>
