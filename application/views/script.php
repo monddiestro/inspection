@@ -46,10 +46,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <center>
           <input type="submit" name="submit" value="Upload" class="btn btn-primary"/>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </center>
       </div>
     </div>
   </div>
