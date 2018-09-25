@@ -57,4 +57,8 @@ class Inspection_model extends CI_Model
     $this->db->set($data);
     $this->db->update('inspected_tbl');
   }
+  function pull_export_inspected() {
+    $query = $this->db->get('inspected_tbl');
+    return $query->result();
+  }
 }

@@ -242,4 +242,32 @@ class Inspection extends CI_Controller
     $this->session->set_flashdata('result_message', 'Success! Inspected details updated');
     redirect($referer);
   }
+  function export() {
+
+    $data = $this->inspection_model->pull_export_inspected();
+
+    $filename = date('YmdHis').".csv";
+    
+    header('Content-type: text/csv');
+    header('Content-Disposition: attachment; filename="'.$filename.'"');
+    
+    // do not cache the file
+    header('Pragma: no-cache');
+    header('Expires: 0');
+
+    $file = fopen('php://output', 'w');
+    fputcsv($file, array('listing_id', 'listing_url', 'dealer_name', 'unit', 'description_code'));
+    foreach ($data as $d) {
+      $row = array(
+        $d->listing_id,
+        $d->listing_uri,
+        $d->dealer_name,
+        $d->unit,
+        $this->generate_code($d->inspected_id)
+      );
+      fputcsv($file,$row);
+    }
+    exit();
+  }
+ 
 }
