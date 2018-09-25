@@ -244,6 +244,10 @@ class Inspection extends CI_Controller
   }
   function export() {
 
+    $word = "";
+    $word .= "<b>This vehicle has undergone a multi-point inspection by Carmudi's in-house mechanics.</b><br/><br/>";
+    $word .= "To view our mechanics' report on this vehicle, kindly fill out the form below to start the download. For more information on the Carmudi Inspection Service, please go to<br/>";
+
     $data = $this->inspection_model->pull_export_inspected();
 
     $filename = date('YmdHis').".csv";
@@ -263,7 +267,7 @@ class Inspection extends CI_Controller
         $d->listing_uri,
         $d->dealer_name,
         $d->unit,
-        $this->generate_code($d->inspected_id)
+        $word . $this->generate_code($d->inspected_id)
       );
       fputcsv($file,$row);
     }
