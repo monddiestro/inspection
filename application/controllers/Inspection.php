@@ -246,7 +246,7 @@ class Inspection extends CI_Controller
 
     $word = "";
     $word .= "<b>This vehicle has undergone a multi-point inspection by Carmudi's in-house mechanics.</b><br/><br/>";
-    $word .= "To view our mechanics' report on this vehicle, kindly fill out the form below to start the download. For more information on the Carmudi Inspection Service, please go to <a target='_blank' href='www.carmudi.com,ph/inspection'>www.carmudi.com,ph/inspection</a><br/>";
+    $word .= "To view our mechanics' report on this vehicle, kindly fill out the form below to start the download. For more information on the Carmudi Inspection Service, please go to <a target='_blank' href='www.carmudi.com.ph/inspection'>www.carmudi.com.ph/inspection</a><br/>";
 
     $data = $this->inspection_model->pull_export_inspected();
 
