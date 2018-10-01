@@ -162,7 +162,7 @@ class Inspection extends CI_Controller
     $code .= '}';
     $code .= '});';
     $code .= 'function reset() {';
-    $code .= "$('#inspection_names').val('');";
+    $code .= "$('#inspection_name').val('');";
     $code .= "$('#inspection_contact').val('');";
     $code .= "$('#inspection_email').val('');";
     $code .= "$('#inspection_contact').removeClass('is-invalid');";
