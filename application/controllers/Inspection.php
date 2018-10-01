@@ -133,20 +133,24 @@ class Inspection extends CI_Controller
     $code .= '<script type="text/javascript">';
     $code .= 'var required = true;';
     $code .= "$('#btn_download').on('click',function() {";
-    $code .= "if($('#inspection_id').val() == '') {";
-    $code .= 'required = false;';
-    $code .= '}';
+    $code .= 'required = true;';
     $code .= "if($('#inspection_name').val() == '') {";
     $code .= 'required = false;';
     $code .= "$('#inspection_name').addClass('is-invalid');";
+    $code .= '} else {';
+    $code .= "$('#inspection_name').removeClass('is-invalid');";
     $code .= '}';
     $code .= "if($('#inspection_contact').val() == '') {";
     $code .= 'required = false;';
     $code .= "$('#inspection_contact').addClass('is-invalid');";
+    $code .= '} else {';
+    $code .= "$('#inspection_contact').removeClass('is-invalid');";
     $code .= '}';
     $code .= "if($('#inspection_email').val() == '') {";
     $code .= 'required = false;';
     $code .= "$('#inspection_email').addClass('is-invalid');";
+    $code .= '} else {';
+    $code .= "$('#inspection_email').removeClass('is-invalid');";
     $code .= '}';
     $code .= 'if(required) {';
     $code .= "var id = $('#inspection_id').val();";
@@ -165,10 +169,9 @@ class Inspection extends CI_Controller
     $code .= "$('#inspection_name').removeClass('is-invalid');";
     $code .= "$('#inspection_email').removeClass('is-invalid');";
     $code .= '}';
-    $code .= 'function getFile(url) {';
-    $code .= 'window.location = url;';
-    $code .= '}';
+    $code .= 'function getFile(url) {window.location = url;}';
     $code .= '</script>';
+
     return $code;
   }
   function access() {
