@@ -276,5 +276,23 @@ class Inspection extends CI_Controller
     }
     exit();
   }
+  function remove_inspected() {
+
+    $referer = $this->input->server('HTTP_REFERRER');
+    
+    $inspected_id = $this->input->get('id');
+
+    $file_name = $this->inspection_model->pull_file($inspected_id);
+
+    $dir = "uploads/" . $file_name;
+
+    $this->inspection_model->drop_inspected($inspected_id);
  
+    unlink($dir);
+
+    $this->session->set_flashdata('result','success');
+    $this->session->set_flashdata('result_message', 'Success! Inspected record deleted');
+    redirect($referer);
+
+  }
 }

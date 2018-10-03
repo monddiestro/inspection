@@ -49,7 +49,7 @@
                       <td><?php echo $d->date_created ?></td>
                       <td>
                         <a href="#" id="main" data-toggle="modal" data-target="#mod_<?php echo $d->inspected_id ?>"><i class="material-icons">edit</i></a>
-                        <a href="#"><i class="material-icons">delete</i></a>
+                        <a href="<?php echo base_url('inspection/remove_inspected?id='.$d->inspected_id) ?>"><i class="material-icons">delete</i></a>
                       </td>
                     </tr>
                   <?php endforeach; ?>
