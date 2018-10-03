@@ -38,7 +38,7 @@
           </div>
           <div class="col-sm-12 col-md-12">
             <label class="btn btn-default btn-icon">
-              <input type="file" name="inspection_report" id="inspection_report" accept="application/pdf" style="display:none;">
+              <input type="file" name="inspection_report" id="inspection_report" accept="application/pdf" style="display:none;" required>
               <i class="material-icons">attach_file</i>&nbsp;&nbsp;&nbsp;<span>Report</span>
             </label>
             <span class="text-muted" id="filename">No File Selected</span>
