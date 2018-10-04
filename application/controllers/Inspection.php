@@ -49,6 +49,11 @@ class Inspection extends CI_Controller
     redirect(base_url('inspection/config?id='.$id.'&listing_id='.$listing_id));
   }
   function config() {
+
+    $word = "";
+    $word .= "<b>This vehicle has undergone a multi-point inspection by Carmudi's in-house mechanics.</b><br/><br/>";
+    $word .= "To view our mechanics' report on this vehicle, kindly fill out the form below to start the download. For more information on the Carmudi Inspection Service, please go to <a target='_blank' href='www.carmudi.com.ph/inspection'>www.carmudi.com.ph/inspection</a><br/>";
+
     $id = $this->input->get('id');
     $listing_id = $this->input->get('listing_id');
     $data = $this->inspection_model->pull_inspected($id,$listing_id);
@@ -60,7 +65,7 @@ class Inspection extends CI_Controller
       'unit' => $data->unit,
       'file_path' => $data->file_path,
       'date_created' => $data->date_created,
-      'code' => $this->generate_code($id)
+      'code' => $word .= $this->generate_code($id)
     );
     $this->load->view('head');
     $menu = array( 'menu' => 'inspected' );
