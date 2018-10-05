@@ -22,6 +22,7 @@ class Inspection extends CI_Controller
     $this->load->view('footer');
   }
 
+
   function create() {
     $listing_id = $this->input->post('listing_id');
     $listing_uri = $this->input->post('listing_uri');
@@ -51,7 +52,7 @@ class Inspection extends CI_Controller
   function config() {
 
     $word = "";
-    $word .= "<b>This vehicle has undergone a multi-point inspection by Carmudi's in-house mechanics.</b><br/><br/>";
+    $word .= "<br/><br/><b>This vehicle has undergone a multi-point inspection by Carmudi's in-house mechanics.</b><br/><br/>";
     $word .= "To view our mechanics' report on this vehicle, kindly fill out the form below to start the download. For more information on the Carmudi Inspection Service, please go to <a target='_blank' href='www.carmudi.com.ph/inspection'>www.carmudi.com.ph/inspection</a><br/>";
 
     $id = $this->input->get('id');
