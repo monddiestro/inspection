@@ -53,7 +53,7 @@ class Inspection extends CI_Controller
 
     $word = "";
     $word .= "<br/><br/><b>This vehicle has undergone a multi-point inspection by Carmudi's in-house mechanics.</b><br/><br/>";
-    $word .= "To view our mechanics' report on this vehicle, kindly fill out the form below to start the download. For more information on the Carmudi Inspection Service, please go to <a target='_blank' href='www.carmudi.com.ph/inspection'>www.carmudi.com.ph/inspection</a><br/>";
+    $word .= "To view our mechanics' report on this vehicle, kindly fill out the form below to start the download. For more information on the Carmudi Inspection Service, please go to <a target='_blank' href='https://www.carmudi.com.ph/inspection/'>www.carmudi.com.ph/inspection</a><br/>";
 
     $id = $this->input->get('id');
     $listing_id = $this->input->get('listing_id');
@@ -255,15 +255,15 @@ class Inspection extends CI_Controller
 
     $word = "";
     $word .= "<br/><br/><b>This vehicle has undergone a multi-point inspection by Carmudi's in-house mechanics.</b><br/><br/>";
-    $word .= "To view our mechanics' report on this vehicle, kindly fill out the form below to start the download. For more information on the Carmudi Inspection Service, please go to <a target='_blank' href='www.carmudi.com.ph/inspection'>www.carmudi.com.ph/inspection</a><br/>";
+    $word .= "To view our mechanics' report on this vehicle, kindly fill out the form below to start the download. For more information on the Carmudi Inspection Service, please go to <a target='_blank' href='https://www.carmudi.com.ph/inspection/'>www.carmudi.com.ph/inspection</a><br/>";
 
     $data = $this->inspection_model->pull_export_inspected();
 
     $filename = date('YmdHis').".csv";
-    
+
     header('Content-type: text/csv');
     header('Content-Disposition: attachment; filename="'.$filename.'"');
-    
+
     // do not cache the file
     header('Pragma: no-cache');
     header('Expires: 0');
@@ -285,7 +285,7 @@ class Inspection extends CI_Controller
   function remove_inspected() {
 
     $referer = $this->input->server('HTTP_REFERRER');
-    
+
     $inspected_id = $this->input->get('id');
 
     $file_name = $this->inspection_model->pull_file($inspected_id);
@@ -293,7 +293,7 @@ class Inspection extends CI_Controller
     $dir = "uploads/" . $file_name;
 
     $this->inspection_model->drop_inspected($inspected_id);
- 
+
     unlink($dir);
 
     $this->session->set_flashdata('result','success');
